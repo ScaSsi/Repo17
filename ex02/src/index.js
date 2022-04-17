@@ -3,8 +3,7 @@ const workDays = ['MON', 'TUE', 'WED', 'THU', 'FRI'];
 function myWeek(days) {
     var week = ['SAT', 'SUN'];
     days.push(...week);
-    week = days;
-    return week;
+    return days;
 }
 
 console.log(myWeek(workDays));

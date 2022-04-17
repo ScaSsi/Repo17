@@ -1,8 +1,7 @@
 const array1 = ['MON', 'TUE', 'WED', 'THU', 'FRI'];
 
 function main(arr) {
-    let array2 = [];
-    array2.push(...arr);
+    let array2 = [...arr];
     return array2;
 }
 

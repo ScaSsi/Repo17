@@ -1,41 +1,32 @@
-const users = [
-    {firstName: "John", lastName: "Doe", age: 24, gender: "male"},
-    {firstName: "Jane", lastName: "Doe", age: 5, gender: "female"},
-    {firstName: "Jim", lastName: "Carrey", age: 54, gender: "male"},
-    {firstName: "Kate", lastName: "Winslet", age: 40, gender: "female"}
-]
+const _ = require("lodash");
+
+let users = [
+    { firstName: "John", lastName: "Doe", age: 24, gender: "male" },
+    { firstName: "Jane", lastName: "Doe", age: 5, gender: "female" },
+    { firstName: "Jim", lastName: "Carrey", age: 54, gender: "male" },
+    { firstName: "Kate", lastName: "Winslet", age: 40, gender: "female" },
+];
 
 function getUsers() {
-    var output = "";
-    var i=0;
-    while( i !== users.length) {
-        output += findUsers(users[i].firstName, users[i].gender);
+    var output = '';
+    for (var i = 0; i < users.length; i++) {
+        output += users[i].firstName + " " + users[i].lastName + " is " + users[i].age + ", " + users[i].gender;
         output += "\n";
-        i++;
     }
-    console.log(output);
     return output;
 }
 
-function findUsers(firstName, gender) {
+function findUser(lastName, gender) {
     try {
-        var user = () => {
-            for(var i=0; i<users.length; i++) {
-                if(users[i].firstName === firstName && users[i].gender === gender)
-                    return users[i];
-            }
-        }
-
-        let iFindUser = user().firstName + " " + user().lastName + " is " + user().age + ", " + user().gender;
-
-        //console.log(iFindUser)
+        var user = _.find(users, { lastName, gender });
+        var iFindUser = user.firstName + " " + user.lastName + " is " + user.age + ", " + user.gender;
         return iFindUser;
-    }catch (e) {
-        return "Cannot read property " + firstName + " of undefined";
+    } catch (error) {
+        return "Cannot read property 'firstname' of undefined";
     }
 }
 
-getUsers();
-//findUsers("Jim", "male");
-
-module.exports = findUsers;
+console.log(getUsers());
+console.log(findUser("Doe", "male"));
+console.log(findUser("", "female"));
+module.exports = findUser;
